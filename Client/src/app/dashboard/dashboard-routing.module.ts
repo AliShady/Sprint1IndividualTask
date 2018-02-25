@@ -18,6 +18,10 @@ const routes: Routes = [
         component: CompanyComponent
       },
       {
+        path:'store',
+        loadChildren: './store/store.module#StoreModule'
+      },
+      {
         path: '',
         redirectTo: 'company',
         pathMatch: 'full'

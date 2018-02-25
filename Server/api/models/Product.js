@@ -16,7 +16,11 @@ var productSchema = mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  updatedAt: Date
+  updatedAt: Date,
+  sellerName: {
+    type: String,
+    default: 'Omar'
+  }
 });
 
 mongoose.model('Product', productSchema);

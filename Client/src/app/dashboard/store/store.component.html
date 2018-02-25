@@ -1,0 +1,26 @@
+<nb-card>
+<nb-card-header>
+  Omar's Store
+</nb-card-header>
+<nb-card-body>
+<input type="text" [(ngModel)]="productName"><br>
+<input type="text" [(ngModel)]="productPrice"><br>
+<input type="submit" (click)="createProduct()">
+
+<table>
+<tr><th>Name</th><th>Price</th><th>CreatedAt</th><th>UpdatedAt</th></tr>
+<tr *ngFor="let product of source">
+    <td>{{product.name}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.price}}</td>
+  </tr>
+
+</table>
+
+</nb-card-body>
+<nb-card-footer>
+  {{productName}} {{productPrice}}
+Thank you for visiting the store.
+</nb-card-footer>
+  </nb-card>
