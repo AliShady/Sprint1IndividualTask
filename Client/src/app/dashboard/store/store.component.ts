@@ -9,37 +9,7 @@ import { Product } from './Product';
   styleUrls: ['./store.component.scss']
 })
 export class StoreComponent implements OnInit {
-
-  storeTableSettings = {
-    columns: {
-      name: {
-        title: 'Name',
-        editable: true,
-        addable: true
-      },
-      price: {
-        title: 'Price',
-        editable: true,
-        addable: true
-      },
-      createdAt: {
-        title: 'Created At',
-        editable: true,
-        addable: true
-      },
-      updatedAt: {
-        title: 'Updated At',
-        editable: true,
-        addable: true
-      },
-      sellerName: {
-        title: 'Seller',
-        editable: true,
-        addable: true
-      }
-    }
-  };
-
+  
   source: any;
   productName: String;
   productPrice: Number;
