@@ -56,7 +56,6 @@ export class StoreComponent implements OnInit {
     this.storeService.getProducts()
       .subscribe(prods =>{
         this.source = prods.data;
-        console.log(this.source);
       });
   }
 
@@ -66,6 +65,9 @@ export class StoreComponent implements OnInit {
     }).subscribe(product =>{this.source.push(product.data)});
   }
 
-
+  deleteProduct(toDeleteId: any): void {
+    this.source = this.source.filter(p => p._id!==toDeleteId);
+    this.storeService.deleteProduct(toDeleteId).subscribe();
+  }
 
 }
