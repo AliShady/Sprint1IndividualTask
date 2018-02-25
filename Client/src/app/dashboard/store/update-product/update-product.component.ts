@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UpdateProductComponent implements OnInit {
 
-  product: any;
+  product = {};
 
   constructor(private route: ActivatedRoute,
     private storeService: StoreService, private location: Location) { }
@@ -25,7 +25,9 @@ export class UpdateProductComponent implements OnInit {
   }
 
   updateProduct(): void {
-
+    this.storeService.updateProduct(this.route.snapshot.paramMap.get('pid'),this.product)
+    .subscribe();
+    this.location.back();
   }
 
 }

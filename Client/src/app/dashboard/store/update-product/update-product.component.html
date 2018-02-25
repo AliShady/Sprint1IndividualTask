@@ -5,36 +5,33 @@
   <nb-card-body>
     <div class="has-success">
       <label class="form-control-label" for="success-form-control">Product Name </label>
-      <input class="form-control form-control-success" value="{{product.name}}">
+      <input class="form-control form-control-success" [(ngModel)]="product.name">
     </div>
-<br/>
+    <br/>
     <div class="has-success">
       <label class="form-control-label" for="success-form-control">Product Price </label>
-      <input class="form-control form-control-success" value="{{product.price}}">
+      <input class="form-control form-control-success" [(ngModel)]="product.price">
     </div>
-<br/>
-<div class="has-success">
-    <label class="form-control-label" for="success-form-control">Seller Name </label>
-    <input class="form-control form-control-success" value="{{product.sellerName}}">
-  </div>
-<br/>
-<div class="has-success">
-    <label class="form-control-label" for="success-form-control">Created At: </label>
-    <input class="form-control form-control-success" value="{{product.createdAt| date}}" disabled>
-  </div>
-<br/>
-<div class="has-success">
-    <label class="form-control-label" for="success-form-control">Last Modified At:</label>
-    <input class="form-control form-control-success" 
-    value="{{product.modifiedAt? (product.modifiedAt | date) :'Not Modified Since Creation'}}" disabled>
-  </div>
-<br/>
+    <br/>
+    <div class="has-success">
+      <label class="form-control-label" for="success-form-control">Seller Name </label>
+      <input class="form-control form-control-success" [(ngModel)]="product.sellerName">
+    </div>
+    <br/>
+    <div class="has-success">
+      <label class="form-control-label" for="success-form-control">Created At: </label>
+      <input class="form-control form-control-success" value="{{product.createdAt| date}}" disabled>
+    </div>
+    <br/>
+    <div class="has-success">
+      <label class="form-control-label" for="success-form-control">Last Modified At:</label>
+      <input class="form-control form-control-success" value="{{ product.updatedAt? (product.updatedAt |date) :'Not Modified Since Creation'}}"
+        disabled>
+    </div>
+    <br/>
     <a routerLink="../../">
       <button class="btn btn-success">Back</button>
     </a>
-   
-    <a routerLink="../../">
-      <button class="btn btn-success">Update</button>
-    </a>
+    <button class="btn btn-success" (click)="updateProduct()">Update</button>
   </nb-card-body>
 </nb-card>
