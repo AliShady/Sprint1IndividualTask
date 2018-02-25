@@ -1,38 +1,48 @@
 <nb-card>
-<nb-card-header>
-  Omar's Store
-</nb-card-header>
-<nb-card-body>
-<input type="text" [(ngModel)]="productName"><br>
-<input type="text" [(ngModel)]="productPrice"><br>
-<input type="submit" (click)="createProduct()">
+  <nb-card-header>
+    Omar's Store
+  </nb-card-header>
+  <nb-card-body>
+    <a routerLink='./create'>
+      <button title="Add New Product" class="btn btn-success">
+        <i class="nb-plus"></i>
+      </button>
+    </a>
+    <br/>
+    <br/>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>CreatedAt</th>
+        <th>UpdatedAt</th>
+        <th>Seller</th>
+        <th colspan="2">Actions</th>
+      </tr>
+      <tr *ngFor="let product of source">
+        <td>{{product.name}}</td>
+        <td>{{product.price|currency}}</td>
+        <td>{{product.createdAt| date}}</td>
+        <td>{{product.updatedAt| date}}</td>
+        <td>{{product.sellerName}}</td>
+        <td>
+          <a routerLink="update/{{product._id}}">
+            <button class="btn btn-success">
+              <i class="nb-edit"></i>
+            </button>
+          </a>
+        </td>
+        <td>
+          <button class="btn btn-success" (click)="deleteProduct(product._id)">
+            <i class="nb-trash"></i>
+          </button>
+        </td>
+      </tr>
 
-<table>
-<tr>
-  <th>Name</th>
-  <th>Price</th>
-  <th>CreatedAt</th>
-  <th>UpdatedAt</th>
-  <th>Seller</th>
-  <th colspan="2">Actions</th>
-</tr>
-<tr *ngFor="let product of source">
-    <td>{{product.name}}</td>
-    <td>{{product.price|currency}}</td>
-    <td>{{product.createdAt| date}}</td>
-    <td>{{product.updatedAt| date}}</td>
-    <td>{{product.sellerName}}</td>
-    <td>
-      <a routerLink="update/{{product._id}}"><button class="btn btn-success"><i class="nb-edit"></i></button></a>
-    </td>
-    <td><button class="btn btn-success" (click)="deleteProduct(product._id)"><i class="nb-trash"></i></button></td>
-  </tr>
+    </table>
 
-</table>
-
-</nb-card-body>
-<nb-card-footer>
-  {{productName}} {{productPrice}}
-Thank you for visiting the store.
-</nb-card-footer>
-  </nb-card>
+  </nb-card-body>
+  <nb-card-footer>
+    Thank you for visiting the store.
+  </nb-card-footer>
+</nb-card>

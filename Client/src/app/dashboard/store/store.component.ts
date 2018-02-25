@@ -59,12 +59,6 @@ export class StoreComponent implements OnInit {
       });
   }
 
-  createProduct(): void { 
-    this.storeService.createProduct({name: this.productName,
-    price: this.productPrice
-    }).subscribe(product =>{this.source.push(product.data)});
-  }
-
   deleteProduct(toDeleteId: any): void {
     this.source = this.source.filter(p => p._id!==toDeleteId);
     this.storeService.deleteProduct(toDeleteId).subscribe();
