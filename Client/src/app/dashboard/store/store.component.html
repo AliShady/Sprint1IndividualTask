@@ -8,37 +8,37 @@
     </button>
     <br/>
     <br/>
-    <table>
+    <table class="table table-hover table-bordered table-striped">
       <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>CreatedAt</th>
-        <th>UpdatedAt</th>
-        <th>Seller</th>
-        <th colspan="2">Actions</th>
+        <th class="text-center">Name</th>
+        <th class="text-center">Price</th>
+        <th class="text-center">CreatedAt</th>
+        <th class="text-center">UpdatedAt</th>
+        <th class="text-center">Seller</th>
+        <th class="text-center" colspan="2">Actions</th>
       </tr>
       <tr *ngFor="let product of source">
         <!-- The products that are not in edit mode -->
-        <td *ngIf="toUpdateProduct._id !== product._id">{{product.name}}</td>
-        <td *ngIf="toUpdateProduct._id !== product._id">{{product.price|currency}}</td>
-        <td *ngIf="toUpdateProduct._id !== product._id">{{product.createdAt| date}}</td>
-        <td *ngIf="toUpdateProduct._id !== product._id">{{product.updatedAt| date}}</td>
-        <td *ngIf="toUpdateProduct._id !== product._id">{{product.sellerName}}</td>
-        <td *ngIf="toUpdateProduct._id !== product._id">
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.name}}</td>
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.price|currency}}</td>
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.createdAt| date}}</td>
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.updatedAt| date}}</td>
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.sellerName}}</td>
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">
           <button class="btn btn-success" (click)="setToUpdateProduct(product)">
             <i class="nb-edit"></i>
           </button>
         </td>
-        <td *ngIf="toUpdateProduct._id !== product._id">
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">
           <button class="btn btn-success" (click)="deleteProduct(product._id)">
             <i class="nb-trash"></i>
           </button>
         </td>
         <!-- The product that is in edit mode -->
-        <td *ngIf="toUpdateProduct._id == product._id">
+        <td *ngIf="toUpdateProduct._id === product._id">
             <input class="form-control form-control-success" [(ngModel)]="product.name">
         </td>
-        <td *ngIf="toUpdateProduct._id == product._id">
+        <td *ngIf="toUpdateProduct._id === product._id">
             <input class="form-control form-control-success" [(ngModel)]="product.price">
         </td>
         <td *ngIf="toUpdateProduct._id === product._id">{{toUpdateProduct.createdAt| date}}</td>
@@ -51,7 +51,7 @@
                 Confirm
               </button>
         </td>
-        <td *ngIf="toUpdateProduct._id == product._id">
+        <td *ngIf="toUpdateProduct._id === product._id">
             <button class="btn btn-success" (click)="cancelUpdate()">
                 Cancel
               </button>
