@@ -1,3 +1,9 @@
+<nb-card *ngIf="error" size="xxxsmall">
+  <nb-card-body>
+      <p class="text-left">{{error}}</p>
+  </nb-card-body>
+</nb-card>
+
 <nb-card *ngIf="!createMode">
   <nb-card-header>
     Omar's Store
@@ -36,29 +42,27 @@
         </td>
         <!-- The product that is in edit mode -->
         <td *ngIf="toUpdateProduct._id === product._id">
-            <input class="form-control form-control-success" [(ngModel)]="product.name">
+          <input class="form-control form-control-success" [(ngModel)]="product.name">
         </td>
         <td *ngIf="toUpdateProduct._id === product._id">
-            <input class="form-control form-control-success" [(ngModel)]="product.price">
+          <input class="form-control form-control-success" [(ngModel)]="product.price">
         </td>
         <td *ngIf="toUpdateProduct._id === product._id">{{toUpdateProduct.createdAt| date}}</td>
         <td *ngIf="toUpdateProduct._id === product._id">{{toUpdateProduct.updatedAt| date}}</td>
         <td *ngIf="toUpdateProduct._id === product._id">
-            <input class="form-control form-control-success" [(ngModel)]="product.sellerName">
+          <input class="form-control form-control-success" [(ngModel)]="product.sellerName">
         </td>
         <td *ngIf="toUpdateProduct._id === product._id">
-            <button class="btn btn-success" (click)="updateProduct(product)">
-                Confirm
-              </button>
+          <button class="btn btn-success" (click)="updateProduct(product)">
+            Confirm
+          </button>
         </td>
         <td *ngIf="toUpdateProduct._id === product._id">
-            <button class="btn btn-success" (click)="cancelUpdate()">
-                Cancel
-              </button>
+          <button class="btn btn-success" (click)="cancelUpdate(product)">
+            Cancel
+          </button>
         </td>
-
       </tr>
-
     </table>
 
   </nb-card-body>
