@@ -10,10 +10,6 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: 'items',
-        loadChildren: './items/items.module#ItemsModule'
-      },
-      {
         path: 'company',
         component: CompanyComponent
       },
