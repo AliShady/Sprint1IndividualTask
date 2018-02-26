@@ -1,6 +1,6 @@
 <nb-card *ngIf="error" size="xxxsmall">
   <nb-card-body>
-      <p class="text-left">{{error}}</p>
+    <p class="text-left">{{error}}</p>
   </nb-card-body>
 </nb-card>
 
@@ -9,9 +9,14 @@
     Omar's Store
   </nb-card-header>
   <nb-card-body>
-    <button title="Add New Product" class="btn btn-success" (click)="enterCreateMode()">
+    <input class="form-control" id="e1" type="text" [(ngModel)]="searchProduct.name" placeholder="Search...">
+    <br/>
+    {{searchProduct.name}}
+    <button title="Add New Product" class="btn btn-success" (click)="enterCreateMode()" style="float: right;">
       <i class="nb-plus"></i>
     </button>
+    <br/>
+    <br/>
     <br/>
     <br/>
     <table class="table table-hover table-bordered table-striped">
@@ -23,7 +28,7 @@
         <th class="text-center">Seller</th>
         <th class="text-center" colspan="2">Actions</th>
       </tr>
-      <tr *ngFor="let product of source">
+      <tr *ngFor="let product of source | searchProductFilter: searchProduct">
         <!-- The products that are not in edit mode -->
         <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.name}}</td>
         <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.price|currency}}</td>

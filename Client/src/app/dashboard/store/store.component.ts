@@ -13,7 +13,7 @@ export class StoreComponent implements OnInit {
   createMode = false;
   product: any = {};
   toUpdateProduct: any = {};
-
+  searchProduct: any = {};
   error: String;
 
   constructor(private storeService: StoreService) {
