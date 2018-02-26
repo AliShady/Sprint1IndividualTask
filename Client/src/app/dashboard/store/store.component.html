@@ -1,13 +1,11 @@
-<nb-card>
+<nb-card *ngIf="!createMode">
   <nb-card-header>
     Omar's Store
   </nb-card-header>
   <nb-card-body>
-    <a routerLink='./create'>
-      <button title="Add New Product" class="btn btn-success">
-        <i class="nb-plus"></i>
-      </button>
-    </a>
+    <button title="Add New Product" class="btn btn-success" (click)="enterCreateMode()">
+      <i class="nb-plus"></i>
+    </button>
     <br/>
     <br/>
     <table>
@@ -20,23 +18,45 @@
         <th colspan="2">Actions</th>
       </tr>
       <tr *ngFor="let product of source">
-        <td>{{product.name}}</td>
-        <td>{{product.price|currency}}</td>
-        <td>{{product.createdAt| date}}</td>
-        <td>{{product.updatedAt| date}}</td>
-        <td>{{product.sellerName}}</td>
-        <td>
-          <a routerLink="update/{{product._id}}">
-            <button class="btn btn-success">
-              <i class="nb-edit"></i>
-            </button>
-          </a>
+        <!-- The products that are not in edit mode -->
+        <td *ngIf="toUpdateProduct._id !== product._id">{{product.name}}</td>
+        <td *ngIf="toUpdateProduct._id !== product._id">{{product.price|currency}}</td>
+        <td *ngIf="toUpdateProduct._id !== product._id">{{product.createdAt| date}}</td>
+        <td *ngIf="toUpdateProduct._id !== product._id">{{product.updatedAt| date}}</td>
+        <td *ngIf="toUpdateProduct._id !== product._id">{{product.sellerName}}</td>
+        <td *ngIf="toUpdateProduct._id !== product._id">
+          <button class="btn btn-success" (click)="setToUpdateProduct(product)">
+            <i class="nb-edit"></i>
+          </button>
         </td>
-        <td>
+        <td *ngIf="toUpdateProduct._id !== product._id">
           <button class="btn btn-success" (click)="deleteProduct(product._id)">
             <i class="nb-trash"></i>
           </button>
         </td>
+        <!-- The product that is in edit mode -->
+        <td *ngIf="toUpdateProduct._id == product._id">
+            <input class="form-control form-control-success" [(ngModel)]="product.name">
+        </td>
+        <td *ngIf="toUpdateProduct._id == product._id">
+            <input class="form-control form-control-success" [(ngModel)]="product.price">
+        </td>
+        <td *ngIf="toUpdateProduct._id === product._id">{{toUpdateProduct.createdAt| date}}</td>
+        <td *ngIf="toUpdateProduct._id === product._id">{{toUpdateProduct.updatedAt| date}}</td>
+        <td *ngIf="toUpdateProduct._id === product._id">
+            <input class="form-control form-control-success" [(ngModel)]="product.sellerName">
+        </td>
+        <td *ngIf="toUpdateProduct._id === product._id">
+            <button class="btn btn-success" (click)="updateProduct(product)">
+                Confirm
+              </button>
+        </td>
+        <td *ngIf="toUpdateProduct._id == product._id">
+            <button class="btn btn-success" (click)="cancelUpdate()">
+                Cancel
+              </button>
+        </td>
+
       </tr>
 
     </table>
@@ -45,4 +65,29 @@
   <nb-card-footer>
     Thank you for visiting the store.
   </nb-card-footer>
+</nb-card>
+
+<nb-card *ngIf="createMode">
+  <nb-card-header>
+    Create a New Product
+  </nb-card-header>
+  <nb-card-body>
+    <div class="has-success">
+      <label class="form-control-label" for="success-form-control">Product Name </label>
+      <input class="form-control form-control-success" [(ngModel)]="product.name">
+    </div>
+    <br/>
+    <div class="has-success">
+      <label class="form-control-label" for="success-form-control">Product Price </label>
+      <input class="form-control form-control-success" [(ngModel)]="product.price">
+    </div>
+    <br/>
+    <div class="has-success">
+      <label class="form-control-label" for="success-form-control">Seller Name </label>
+      <input class="form-control form-control-success" [(ngModel)]="product.sellerName">
+    </div>
+    <br/>
+    <button class="btn btn-success" (click)="leaveCreateMode()">Back</button>
+    <button class="btn btn-success" (click)="createProduct()">Create</button>
+  </nb-card-body>
 </nb-card>

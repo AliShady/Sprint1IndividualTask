@@ -5,14 +5,12 @@ import {StoreRoutingModule} from './store-routing.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { StoreService } from './store.service';
 import { FormsModule } from '@angular/forms';
-import { UpdateProductComponent } from './update-product/update-product.component';
-import { CreateProductComponent } from './create-product/create-product.component';
 
 @NgModule({
   providers: [StoreService],
   imports: [
     ThemeModule, StoreRoutingModule, Ng2SmartTableModule,FormsModule
   ],
-  declarations: [StoreComponent, UpdateProductComponent, CreateProductComponent]
+  declarations: [StoreComponent]
 })
 export class StoreModule { }
