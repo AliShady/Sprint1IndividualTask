@@ -11,7 +11,6 @@
   <nb-card-body>
     <input class="form-control" id="e1" type="text" [(ngModel)]="searchProduct.name" placeholder="Search...">
     <br/>
-    {{searchProduct.name}}
     <button title="Add New Product" class="btn btn-success" (click)="enterCreateMode()" style="float: right;">
       <i class="nb-plus"></i>
     </button>
@@ -47,15 +46,15 @@
         </td>
         <!-- The product that is in edit mode -->
         <td *ngIf="toUpdateProduct._id === product._id">
-          <input class="form-control form-control-success" [(ngModel)]="product.name">
+          <input class="form-control form-control-success" [(ngModel)]="toUpdateProduct.name">
         </td>
         <td *ngIf="toUpdateProduct._id === product._id">
-          <input class="form-control form-control-success" [(ngModel)]="product.price">
+          <input class="form-control form-control-success" [(ngModel)]="toUpdateProduct.price">
         </td>
         <td *ngIf="toUpdateProduct._id === product._id">{{toUpdateProduct.createdAt| date}}</td>
         <td *ngIf="toUpdateProduct._id === product._id">{{toUpdateProduct.updatedAt| date}}</td>
         <td *ngIf="toUpdateProduct._id === product._id">
-          <input class="form-control form-control-success" [(ngModel)]="product.sellerName">
+          <input class="form-control form-control-success" [(ngModel)]="toUpdateProduct.sellerName">
         </td>
         <td *ngIf="toUpdateProduct._id === product._id">
           <button class="btn btn-success" (click)="updateProduct(product)">

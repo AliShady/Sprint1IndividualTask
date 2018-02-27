@@ -69,27 +69,30 @@ export class StoreComponent implements OnInit {
   }
 
   updateProduct(product: any): void {
-    if(!product.name||!product.price||!product.sellerName){
+    if (!this.toUpdateProduct.name || !this.toUpdateProduct.price || !this.toUpdateProduct.sellerName) {
       this.error = "Please don't leave empty fields after your edit";
       return;
     }
 
-    if (isNaN(Number(product.price))) {
+    if (isNaN(Number(this.toUpdateProduct.price))) {
       this.error = 'The Price should be a valid number after your edit.';
       return;
     }
 
-    this.storeService.updateProduct(product._id, product)
+    this.storeService.updateProduct(this.toUpdateProduct._id, this.toUpdateProduct)
       .subscribe(prod => {
-        this.toUpdateProduct = {};
+        product.name = this.toUpdateProduct.name;
+        product.sellerName = this.toUpdateProduct.sellerName;
+        product.price = this.toUpdateProduct.price;
+        this.toUpdateProduct = Object.assign({}, {});
         product.updatedAt = prod.data.updatedAt;
+        console.log(this.toUpdateProduct);
+        console.log(product);
+        this.error=null;
       });
   }
 
   cancelUpdate(product: any): void {
-    product.name = this.toUpdateProduct.name;
-    product.sellerName = this.toUpdateProduct.sellerName;
-    product.price =this.toUpdateProduct.price;
     this.toUpdateProduct = Object.assign({}, {});
     this.error = null;
   }
