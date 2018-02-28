@@ -10,7 +10,7 @@ export class SearchProductPipe implements PipeTransform {
     if(!products||!filter.name){
       return products;
     }
-    return products.filter(product => product.name.indexOf(filter.name) !== -1);
+    return products.filter(function(product) { return product.name.indexOf(filter.name) !== -1;});
   }
 
 }

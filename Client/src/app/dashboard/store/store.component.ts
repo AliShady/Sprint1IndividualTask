@@ -24,9 +24,13 @@ export class StoreComponent implements OnInit {
   }
 
   getProducts(): void {
+    var self = this;
     this.storeService.getProducts()
-      .subscribe(prods => {
-        this.source = prods.data;
+      .subscribe(function (prods) {
+        self.source = prods.data;
+        self.source = self.source.filter(function (element, index, array) {
+          return element.sellerName === 'Omar Elkilany';
+        });
       });
   }
 
@@ -56,9 +60,11 @@ export class StoreComponent implements OnInit {
       this.error = 'The Price should be a valid number.';
       return;
     }
-
+    var self = this;
     this.storeService.createProduct(this.product)
-      .subscribe(prod => this.source.push(prod.data));
+      .subscribe(function (prod) {
+        if (prod.data.sellerName == 'Omar Elkilany') self.source.push(prod.data);
+      });
     this.product = {};
     this.leaveCreateMode();
     this.error = null;
@@ -78,17 +84,18 @@ export class StoreComponent implements OnInit {
       this.error = 'The Price should be a valid number after your edit.';
       return;
     }
-
+    var self = this;
     this.storeService.updateProduct(this.toUpdateProduct._id, this.toUpdateProduct)
-      .subscribe(prod => {
-        product.name = this.toUpdateProduct.name;
-        product.sellerName = this.toUpdateProduct.sellerName;
-        product.price = this.toUpdateProduct.price;
-        this.toUpdateProduct = Object.assign({}, {});
+      .subscribe(function (prod) {
+        product.name = prod.data.name;
+        product.sellerName = prod.data.sellerName;
+        product.price = prod.data.price;
         product.updatedAt = prod.data.updatedAt;
-        console.log(this.toUpdateProduct);
-        console.log(product);
-        this.error=null;
+        self.source = self.source.filter(function (element, index, array) {
+          return element.sellerName === 'Omar Elkilany';
+        });
+        self.toUpdateProduct = Object.assign({}, {});
+        self.error = null;
       });
   }
 
