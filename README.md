@@ -29,4 +29,4 @@ ng serve -o
  ## Authors
   - [Omar Elkilany](https://github.com/OmarElkilany)
 ## About
-This repository contians the individual task of sprint 1. It contains the store module that supports the CRUD operations.
+This repository contians the individual task of sprint 1. It contains the store module that supports the CRUD operations. A search functionality and a simple admin system were also implemented as part of the bonus requirements.
