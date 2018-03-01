@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 
+
+
 const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: './dashboard/dashboard.module#DashboardModule'
   },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: 'dashboard' }
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
 const config: ExtraOptions = {
@@ -19,4 +20,4 @@ const config: ExtraOptions = {
   exports: [RouterModule],
   providers: []
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -19,8 +19,15 @@ var productSchema = mongoose.Schema({
   updatedAt: Date,
   sellerName: {
     type: String,
+<<<<<<< HEAD
     default: 'Omar'
   }
+=======
+    required: true,
+    trim: true
+  },
+  stock: Number
+>>>>>>> 48ed3ee89b05990453416e9f1bb73dbcbe942739
 });
 
 mongoose.model('Product', productSchema);
