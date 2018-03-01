@@ -54,13 +54,13 @@ export class StoreComponent implements OnInit {
 
   createProduct(): void {
 
-    if (!this.product.name || !this.product.price || !this.product.sellerName) {
+    if (!this.product.name || !this.product.price || !this.product.sellerName || !this.product.stock) {
       this.error = 'Please supply all the required fields.';
       return;
     }
 
-    if (isNaN(Number(this.product.price))) {
-      this.error = 'The Price should be a valid number.';
+    if (isNaN(Number(this.product.price)) || isNaN(Number(this.product.stock))) {
+      this.error = 'The Price and Stock should be valid numbers.';
       return;
     }
     var self = this;
@@ -78,13 +78,14 @@ export class StoreComponent implements OnInit {
   }
 
   updateProduct(product: any): void {
-    if (!this.toUpdateProduct.name || !this.toUpdateProduct.price || !this.toUpdateProduct.sellerName) {
+    if (!this.toUpdateProduct.name || !this.toUpdateProduct.price || !this.toUpdateProduct.sellerName
+    || !this.toUpdateProduct.stock) {
       this.error = "Please don't leave empty fields after your edit";
       return;
     }
 
-    if (isNaN(Number(this.toUpdateProduct.price))) {
-      this.error = 'The Price should be a valid number after your edit.';
+    if (isNaN(Number(this.toUpdateProduct.price))|| isNaN(Number(this.toUpdateProduct.stock))) {
+      this.error = 'The Price and Stock should be valid numbers after your edit.';
       return;
     }
     var self = this;
@@ -94,6 +95,7 @@ export class StoreComponent implements OnInit {
         product.sellerName = prod.data.sellerName;
         product.price = prod.data.price;
         product.updatedAt = prod.data.updatedAt;
+        product.stock = prod.data.stock;
         self.source = self.source.filter(function (element, index, array) {
           return element.sellerName === 'Omar Elkilany';
         });

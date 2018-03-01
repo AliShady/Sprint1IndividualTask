@@ -26,6 +26,7 @@
         <th class="text-center">CreatedAt</th>
         <th class="text-center">UpdatedAt</th>
         <th class="text-center">Seller</th>
+        <th class="text-center">Stock</th>
         <th class="text-center" colspan="2">Actions</th>
       </tr>
       <tr *ngFor="let product of source | searchProductFilter: searchProduct">
@@ -35,6 +36,7 @@
         <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.createdAt| date}}</td>
         <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.updatedAt| date}}</td>
         <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.sellerName}}</td>
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.stock}}</td>
         <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">
           <button class="btn btn-success" (click)="setToUpdateProduct(product)">
             <i class="nb-edit"></i>
@@ -56,6 +58,9 @@
         <td *ngIf="toUpdateProduct._id === product._id">{{toUpdateProduct.updatedAt| date}}</td>
         <td *ngIf="toUpdateProduct._id === product._id">
           <input class="form-control form-control-success" [(ngModel)]="toUpdateProduct.sellerName">
+        </td>
+        <td *ngIf="toUpdateProduct._id === product._id">
+          <input class="form-control form-control-success" [(ngModel)]="toUpdateProduct.stock">
         </td>
         <td *ngIf="toUpdateProduct._id === product._id">
           <button class="btn btn-success" (click)="updateProduct(product)">
@@ -98,6 +103,7 @@
         <th class="text-center">CreatedAt</th>
         <th class="text-center">UpdatedAt</th>
         <th class="text-center">Seller</th>
+        <th class="text-center">Stock</th>
         <th class="text-center" colspan="2">Actions</th>
       </tr>
       <tr *ngFor="let product of source | searchProductFilter: searchProduct">
@@ -107,6 +113,7 @@
         <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.createdAt| date}}</td>
         <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.updatedAt| date}}</td>
         <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.sellerName}}</td>
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.stock}}</td>
         <td class="text-center" *ngIf="toUpdateProduct._id !== product._id" colspan="2">
           <button class="btn btn-success" (click)="setToUpdateProduct(product)">
             <i class="nb-edit"></i>
@@ -123,6 +130,9 @@
         <td *ngIf="toUpdateProduct._id === product._id">{{toUpdateProduct.updatedAt| date}}</td>
         <td *ngIf="toUpdateProduct._id === product._id">
           <input class="form-control form-control-success" [(ngModel)]="toUpdateProduct.sellerName">
+        </td>
+        <td *ngIf="toUpdateProduct._id === product._id">
+          <input class="form-control form-control-success" [(ngModel)]="toUpdateProduct.stock">
         </td>
         <td *ngIf="toUpdateProduct._id === product._id">
           <button class="btn btn-success" (click)="updateProduct(product)">
@@ -158,6 +168,7 @@
         <th class="text-center">CreatedAt</th>
         <th class="text-center">UpdatedAt</th>
         <th class="text-center">Seller</th>
+        <th class="text-center">Stock</th>
       </tr>
       <tr *ngFor="let product of source | searchProductFilter: searchProduct">
         <td class="text-center" >{{product.name}}</td>
@@ -165,6 +176,7 @@
         <td class="text-center" >{{product.createdAt| date}}</td>
         <td class="text-center" >{{product.updatedAt| date}}</td>
         <td class="text-center" >{{product.sellerName}}</td>
+        <td class="text-center" >{{product.stock}}</td>
       </tr>
     </table>
   </nb-card-body>
@@ -192,6 +204,11 @@
     <div class="has-success">
       <label class="form-control-label" for="success-form-control">Seller Name </label>
       <input class="form-control form-control-success" [(ngModel)]="product.sellerName">
+    </div>
+    <br/>
+    <div class="has-success">
+      <label class="form-control-label" for="success-form-control">Stock </label>
+      <input class="form-control form-control-success" [(ngModel)]="product.stock">
     </div>
     <br/>
     <button class="btn btn-success" (click)="leaveCreateMode()">Back</button>
