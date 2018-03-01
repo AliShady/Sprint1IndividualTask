@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { StoreService } from './store.service';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-store',
@@ -15,12 +16,15 @@ export class StoreComponent implements OnInit {
   toUpdateProduct: any = {};
   searchProduct: any = {};
   error: String;
+  user: any;
 
-  constructor(private storeService: StoreService) {
+  constructor(private storeService: StoreService, private userService: UserService) {
   }
 
   ngOnInit() {
     this.getProducts();
+    this.user = this.userService.getUser();
+    console.log(this.user);
   }
 
   getProducts(): void {

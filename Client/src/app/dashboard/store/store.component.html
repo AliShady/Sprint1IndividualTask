@@ -4,7 +4,8 @@
   </nb-card-body>
 </nb-card>
 
-<nb-card *ngIf="!createMode">
+<!-- Admin can edit, view, delete, and create -->
+<nb-card *ngIf="!createMode && user && user.userType==='admin'">
   <nb-card-header>
     Omar's Store
   </nb-card-header>
@@ -75,6 +76,104 @@
   </nb-card-footer>
 </nb-card>
 
+<!-- Managers can view, edit, and create -->
+<nb-card *ngIf="!createMode && user && user.userType==='manager'">
+  <nb-card-header>
+    Omar's Store
+  </nb-card-header>
+  <nb-card-body>
+    <input class="form-control" id="e1" type="text" [(ngModel)]="searchProduct.name" placeholder="Search...">
+    <br/>
+    <button title="Add New Product" class="btn btn-success" (click)="enterCreateMode()" style="float: right;">
+      <i class="nb-plus"></i>
+    </button>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <table class="table table-hover table-bordered table-striped">
+      <tr>
+        <th class="text-center">Name</th>
+        <th class="text-center">Price</th>
+        <th class="text-center">CreatedAt</th>
+        <th class="text-center">UpdatedAt</th>
+        <th class="text-center">Seller</th>
+        <th class="text-center" colspan="2">Actions</th>
+      </tr>
+      <tr *ngFor="let product of source | searchProductFilter: searchProduct">
+        <!-- The products that are not in edit mode -->
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.name}}</td>
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.price|currency}}</td>
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.createdAt| date}}</td>
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.updatedAt| date}}</td>
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id">{{product.sellerName}}</td>
+        <td class="text-center" *ngIf="toUpdateProduct._id !== product._id" colspan="2">
+          <button class="btn btn-success" (click)="setToUpdateProduct(product)">
+            <i class="nb-edit"></i>
+          </button>
+        </td>
+        <!-- The product that is in edit mode -->
+        <td *ngIf="toUpdateProduct._id === product._id">
+          <input class="form-control form-control-success" [(ngModel)]="toUpdateProduct.name">
+        </td>
+        <td *ngIf="toUpdateProduct._id === product._id">
+          <input class="form-control form-control-success" [(ngModel)]="toUpdateProduct.price">
+        </td>
+        <td *ngIf="toUpdateProduct._id === product._id">{{toUpdateProduct.createdAt| date}}</td>
+        <td *ngIf="toUpdateProduct._id === product._id">{{toUpdateProduct.updatedAt| date}}</td>
+        <td *ngIf="toUpdateProduct._id === product._id">
+          <input class="form-control form-control-success" [(ngModel)]="toUpdateProduct.sellerName">
+        </td>
+        <td *ngIf="toUpdateProduct._id === product._id">
+          <button class="btn btn-success" (click)="updateProduct(product)">
+            Confirm
+          </button>
+        </td>
+        <td *ngIf="toUpdateProduct._id === product._id">
+          <button class="btn btn-success" (click)="cancelUpdate(product)">
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </table>
+  </nb-card-body>
+  <nb-card-footer>
+    Thank you for visiting the store.
+  </nb-card-footer>
+</nb-card>
+
+<!-- viewers and non-registered users can only view -->
+<nb-card *ngIf="!user || (user && user.userType==='viewer')">
+  <nb-card-header>
+    Omar's Store
+  </nb-card-header>
+  <nb-card-body>
+    <input class="form-control" id="e1" type="text" [(ngModel)]="searchProduct.name" placeholder="Search...">
+    <br/>
+    <br/>
+    <table class="table table-hover table-bordered table-striped">
+      <tr>
+        <th class="text-center">Name</th>
+        <th class="text-center">Price</th>
+        <th class="text-center">CreatedAt</th>
+        <th class="text-center">UpdatedAt</th>
+        <th class="text-center">Seller</th>
+      </tr>
+      <tr *ngFor="let product of source | searchProductFilter: searchProduct">
+        <td class="text-center" >{{product.name}}</td>
+        <td class="text-center" >{{product.price|currency}}</td>
+        <td class="text-center" >{{product.createdAt| date}}</td>
+        <td class="text-center" >{{product.updatedAt| date}}</td>
+        <td class="text-center" >{{product.sellerName}}</td>
+      </tr>
+    </table>
+  </nb-card-body>
+  <nb-card-footer>
+    Thank you for visiting the store.
+  </nb-card-footer>
+</nb-card>
+
+<!-- create mode for manager and admin -->
 <nb-card *ngIf="createMode">
   <nb-card-header>
     Create a New Product
