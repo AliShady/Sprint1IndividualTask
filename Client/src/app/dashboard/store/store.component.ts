@@ -24,7 +24,6 @@ export class StoreComponent implements OnInit {
   ngOnInit() {
     this.getProducts();
     this.user = this.userService.getUser();
-    console.log(this.user);
   }
 
   getProducts(): void {
